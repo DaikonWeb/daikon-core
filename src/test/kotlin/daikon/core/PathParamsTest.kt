@@ -25,4 +25,11 @@ class PathParamsTest {
 
         assertThat(pathParams.valueOf("/123")[":bar"]).isNull()
     }
+
+    @Test
+    fun `value of a non-path parameter is null`() {
+        val pathParams = PathParams("/baz")
+
+        assertThat(pathParams.valueOf("/baz")["baz"]).isNull()
+    }
 }
