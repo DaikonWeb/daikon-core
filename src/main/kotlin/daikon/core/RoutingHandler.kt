@@ -7,7 +7,7 @@ class RoutingHandler(
         private val routes: Routing,
         private val afters: Routing,
         private val context: Context,
-        private val exceptions: MutableList<ExceptionRoute>
+        private val exceptions: List<ExceptionRoute>
 ) {
     fun execute(request: Request, response: Response) {
         try {
