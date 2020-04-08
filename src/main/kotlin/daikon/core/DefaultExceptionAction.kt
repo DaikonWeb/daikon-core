@@ -1,16 +1,17 @@
 package daikon.core
 
+import daikon.core.HttpStatus.INTERNAL_SERVER_ERROR_500
 import java.io.PrintWriter
 import java.io.StringWriter
 
-class DefaultExceptionAction(private val t: Throwable): RouteAction {
-    override fun handle(request: Request, response: Response, context: Context) {
-        response.status(HttpStatus.INTERNAL_SERVER_ERROR_500)
+class DefaultExceptionAction: ExceptionAction {
+    override fun handle(request: Request, response: Response, context: Context, t: Throwable) {
+        response.status(INTERNAL_SERVER_ERROR_500)
         response.type("text/html")
-        response.write(html())
+        response.write(html(t))
     }
 
-    private fun html() = """
+    private fun html(t: Throwable) = """
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>

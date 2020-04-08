@@ -7,7 +7,7 @@ class RoutingHandler(
         private val routes: Routing,
         private val afters: Routing,
         private val context: Context,
-        private val exceptions: List<ExceptionRoute>
+        private val exceptions: Exceptions
 ) {
     fun execute(request: Request, response: Response) {
         try {
@@ -25,14 +25,8 @@ class RoutingHandler(
                 .forEach { invoke(it, request, response) }
         } catch(t: HaltException) {
         } catch(t: Throwable) {
-            bestExceptionFor(t).handle(request, response, context)
+            exceptions.bestFor(t).handle(request, response, context, t)
         }
-    }
-
-    private fun bestExceptionFor(t: Throwable): RouteAction {
-        return exceptions.firstOrNull { it.matchesExactly(t) }?.action
-            ?: exceptions.firstOrNull { it.matches(t) }?.action
-            ?: DefaultExceptionAction(t)
     }
 
     private fun invoke(route: Route, req: Request, res: Response) {
