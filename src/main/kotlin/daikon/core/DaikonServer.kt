@@ -130,6 +130,17 @@ abstract class DaikonServer(initializeActions: DaikonServer.() -> Unit = {}) : A
         return this
     }
 
+    fun assets(path: String): DaikonServer {
+        get(path) { req, res ->
+            val resource = this::class.java.getResource("/assets/${req.path()}")
+
+            res.status(HttpStatus.OK_200)
+            res.type(MimeType.from(req.path()) ?: resource.openConnection().contentType)
+            res.write(resource.readBytes())
+        }
+        return this
+    }
+
     private fun add(method: Method, path: String, action: RouteAction): DaikonServer {
         routes.add(Route(method, joinPaths(path), action))
         return this
