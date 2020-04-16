@@ -8,6 +8,10 @@ class TestRequest(
         TODO("Not yet implemented")
     }
 
+    override fun hasParam(name: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun header(name: String): String {
         TODO("Not yet implemented")
     }
@@ -33,6 +37,10 @@ class TestRequest(
     }
 
     override fun <T> attribute(key: String): T {
+        TODO("Not yet implemented")
+    }
+
+    override fun hasAttribute(key: String): Boolean {
         TODO("Not yet implemented")
     }
 
