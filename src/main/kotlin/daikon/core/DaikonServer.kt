@@ -132,7 +132,7 @@ abstract class DaikonServer(initializeActions: DaikonServer.() -> Unit = {}) : A
 
     fun assets(path: String): DaikonServer {
         get(path) { req, res ->
-            val resource = this::class.java.getResource("/assets/${req.path()}")
+            val resource = this::class.java.getResource("/assets${req.path()}")
 
             res.status(HttpStatus.OK_200)
             res.type(MimeType.from(req.path()) ?: resource.openConnection().contentType)
