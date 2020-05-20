@@ -19,9 +19,13 @@ class TestResponse(
         status = code
     }
 
+    override fun status() = status
+
     override fun type(contentType: String) {
         type = contentType
     }
+
+    override fun type() = type
 
     override fun header(name: String, value: String) {
         TODO("Not yet implemented")
