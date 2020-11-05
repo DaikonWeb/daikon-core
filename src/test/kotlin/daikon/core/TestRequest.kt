@@ -24,6 +24,10 @@ class TestRequest(
         TODO("Not yet implemented")
     }
 
+    override fun multipart(name: String): Part {
+        TODO("Not yet implemented")
+    }
+
     override fun url(): String {
         TODO("Not yet implemented")
     }

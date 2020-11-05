@@ -6,6 +6,7 @@ interface Request {
     fun header(name: String): String
     fun hasHeader(name: String): Boolean
     fun body(): String
+    fun multipart(name: String): Part
     fun url(): String
     fun path(): String
     fun <T> attribute(key: String, value: T)
@@ -14,3 +15,4 @@ interface Request {
     fun method(): Method
     fun withPathParams(value: String): Request
 }
+
